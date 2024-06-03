@@ -64,7 +64,8 @@ sidebar_bg = """
     </style>
     """
 
-
+# Displaying image
+st.image("images/home_img.jpg")
 
 
 
@@ -83,7 +84,7 @@ st.markdown("- **Antioxidants:** Many fruits and vegetables contain antioxidants
 
     # System overview
 st.header("How the System Works")
-st.markdown("Sure! Here's a description of how the Food Nutrition Detection System works,")
+st.markdown("Sure! Here's a description of how the Food Nutrition Detection System works")
 
 
     # Image
