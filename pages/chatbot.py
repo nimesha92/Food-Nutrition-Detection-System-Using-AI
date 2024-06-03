@@ -33,7 +33,7 @@ def get_response(user_input):
 # Streamlit app
 def main():
     # Displaying image
-    st.image("D:\myprojects\STREAMLIT.DEMO\home_img.jpg")
+    st.image("images/home_img.jpg")
     st.title("Food Nutrition Chatbot")
     st.title("Animated Hand")
 

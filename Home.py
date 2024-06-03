@@ -87,5 +87,5 @@ st.markdown("Sure! Here's a description of how the Food Nutrition Detection Syst
 
 
     # Image
-image_path = "vege.jpg"
+image_path = "images/vege.jpg"
 st.image(image_path, use_column_width=True)

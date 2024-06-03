@@ -4,7 +4,7 @@ import streamlit as st
 st.set_page_config(page_title="About", page_icon="🌍")
 
 # Displaying image
-st.image("/images/home_img.jpg")
+st.image("images/home_img.jpg")
 
 # Header
 st.header("About Project")
