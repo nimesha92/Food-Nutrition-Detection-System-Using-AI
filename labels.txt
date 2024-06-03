@@ -1,0 +1,36 @@
+Apple,95 calories, 0 gram fat, 1 gram protein, 25 grams carbohydrate, 19 grams sugar
+banana,A medium-sized banana contains about 105 calories.
+beetroot,Raw beetroots are relatively low in calories, providing about 43 calories per 100 grams
+bellpepper is a highly nutritious vegetable packed with vitamins, minerals, and antioxidants
+cabbage,Cabbage is also rich in phytonutrients, particularly glucosinolates.
+capsicum,Vitamin C: 80.4 mg (134% of the Daily Value)Vitamin A: 1577 IU (32% of the Daily Value)
+carrot,Carrots are an excellent source of essential vitamins, minerals, and dietary fiber
+cauliflower,Cauliflower is a cruciferous vegetable that is low in calories but high in nutrients
+chillpepper,Chili peppers are particularly rich in vitamin C, which is essential for immune function and collagen synthesis
+corn,Corn is particularly rich in carbohydrates and provides a moderate amount of protein and dietary fiber
+cucumber,they are incredibly low in calories and contain beneficial nutrients like vitamin K
+eggplant,Eggplants are particularly rich in dietary fiber, which promotes digestive health and helps with weight management
+Garlic,Low in calories, high in flavor.
+ginger,Rich in antioxidants, aids digestion, anti-inflammatory, boosts immunity, versatile.
+grapes,High in antioxidants, vitamins C and K, hydrating, low-calorie fruit.
+jalepeno,Low in calories, high in vitamin C, spicy, flavorful pepper.
+kiwi,High in vitamin C, fiber, potassium, antioxidants, low-calorie, delicious fruit.
+lemon,Rich in vitamin C, antioxidants, aids digestion, low in calories.
+lettuce,Low in calories, hydrating, fiber-rich, vitamins A and K, crunchy.
+mango,Rich in vitamins A and C, fiber, antioxidants, sweet, tropical fruit.
+onion,Low in calories, fiber-rich, antioxidants, vitamins C and B6.
+orange,High in vitamin C, fiber, antioxidants, hydrating, sweet citrus fruit.
+paprika,Rich in vitamin C, antioxidants, low in calories, versatile spice.
+pear,Rich in fiber, vitamins C and K, antioxidants, sweet fruit.
+peas,High in fiber, protein, vitamins A and C, folate, iron.
+pineapple,Rich in vitamin C, manganese, antioxidants, digestive enzyme bromelain, tropical.
+pomegranate,High in antioxidants, vitamins C and K, fiber, anti-inflammatory, tart.
+potato,Rich in potassium, vitamin C, B vitamins, fiber, carbohydrates, versatile.
+raddish,Low in calories, high in fiber, vitamin C, potassium, antioxidants.
+soy beans,Rich in protein, fiber, vitamins, minerals, antioxidants, omega-3 fatty acids.
+spinach,High in iron, calcium, vitamins A and K, antioxidants, fiber.
+sweetcorn,Rich in fiber, vitamins A and C, antioxidants, sweet vegetable.
+sweetpotato,Rich in fiber, vitamins A and C, antioxidants, potassium, delicious.
+tomato,High in vitamin C, potassium, antioxidants, lycopene, low in calories.
+turnip,Low in calories, high in fiber, vitamins C and K.
+watermelon,Watermelon is particularly known for its high water content, making it an excellent choice for hydration, especially during hot weather. Additionally, it contains significant amounts of vitamin C, which supports immune function and skin health, and vitamin A, which is essential for vision health and immune function.

@@ -1,0 +1,9 @@
+__pycache__/
+.streamlit/*
+test
+pages/data.py
+pages/test.py
+.git
+Account.py
+db.py
+config.yaml
