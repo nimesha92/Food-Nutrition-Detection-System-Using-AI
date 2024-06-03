@@ -31,7 +31,7 @@ feedback_data = pd.DataFrame({
 
 
 # Displaying image
-st.image("D:\myprojects\STREAMLIT.DEMO\home_img.jpg")
+st.image("images/home_img.jpg")
 # Page content
 st.title("FRUITS & VEGETABLES RECOGNITION SYSTEM")
 

@@ -245,7 +245,7 @@ with st.container():
 
 
                 if st.session_state["username"]:
-                    image_path = "home_img.jpg"
+                    image_path = "images/home_img.jpg"
                     st.image(image_path)
                     st.header("Model Prediction")
                     test_image = st.file_uploader("Choose an Image:")

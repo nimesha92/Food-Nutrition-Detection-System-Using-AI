@@ -142,7 +142,7 @@ def get_connection():
     return pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=DESKTOP-KCKGKPJ\\MSSQLSERVER01;DATABASE=UserAuth;Trusted_Connection=yes')
 
 def main():# Displaying image
-    st.image("D:\myprojects\STREAMLIT.DEMO\home_img.jpg")
+    st.image("images/home_img.jpg")
 
     st.title('Food Detection Prediction System')
 
