@@ -76,7 +76,7 @@ input[type="text"], input[type="password"] {
 
 button {
     padding: 8px;
-    background-color: #4CAF50;
+    background-color: #5dbea3;
     color: white;
     border: none;
     border-radius: 5px;
@@ -198,14 +198,14 @@ with st.container():
                 if st.session_state['view'] == "login":
                     login_username = st.text_input("Username", key="login_username")
                     login_password = st.text_input("Password", type="password", key="login_password")
-                    buttons_html = """
-                    <div class="button-container">
-                        <button onclick="document.getElementById('login_button').click()">Login</button>
-                        <button onclick="document.getElementById('show_register').click()">Register Here</button>
-                    </div>
-                    """
-                    st.markdown(buttons_html, unsafe_allow_html=True)
-                    if st.button("Login", key="login_button", style="display:none"):
+                    # buttons_html = """
+                    # # <div class="button-container">
+                    # #     <button onclick="document.getElementById('login_button').click()">Login</button>
+                    # #     <button onclick="document.getElementById('show_register').click()">Register Here</button>
+                    # # </div>
+                    # # """
+                    #st.markdown(buttons_html, unsafe_allow_html=True)
+                    if st.button("Login", key="login_button"):
                         if authenticate_user(conn, login_username, login_password):
                             st.session_state['username'] = login_username
                             st.session_state['view'] = "content"
@@ -213,7 +213,7 @@ with st.container():
                             st.experimental_rerun()  # Rerun the app to reflect changes
                         else:
                             st.error("Invalid username or password")
-                    if st.button("Register Here", key="show_register", style="display:none"):
+                    if st.button("Register Here", key="show_register"):
                         st.session_state['view'] = "register"
 
                 elif st.session_state['view'] == "register":
