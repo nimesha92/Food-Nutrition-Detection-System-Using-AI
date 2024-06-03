@@ -2,11 +2,11 @@ import streamlit as st
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-from datetime import datetime, timedelta
+from datetime import datetime
 import pyodbc
 
-# CSS for styling the page
-page_css = """
+# CSS for styling the login page
+login_page_css = """
 <style>
 body {
     background-color: #f0f2f6;
@@ -14,7 +14,7 @@ body {
 }
 
 .container {
-    max-width: 800px;
+    max-width: 400px;
     margin: auto;
     padding: 20px;
     border-radius: 10px;
@@ -30,20 +30,14 @@ h1 {
     margin-bottom: 20px;
 }
 
-h2 {
-    color: #333333;
-    font-size: 20px;
-    margin-bottom: 10px;
-}
-
-.label {
+label {
     font-weight: bold;
     color: #555555;
     margin-bottom: 5px;
     display: block;
 }
 
-.input {
+input[type="text"], input[type="password"] {
     width: 100%;
     padding: 10px;
     margin: 8px 0;
@@ -53,33 +47,33 @@ h2 {
     background-color: #f9f9f9;
 }
 
-.button {
+button {
     width: 100%;
     padding: 10px;
-    margin-top: 10px;
+    margin-top: 5px;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 12px;
+    font-size: 10px;
 }
 
-.button:hover {
-    background-color: #a4b0d3;
+button:hover {
+    background-color: #45a049;
 }
 
-.warning {
+.error-message {
     color: #ff0000;
     margin-top: 10px;
 }
 
-.success {
+.success-message {
     color: #4CAF50;
     margin-top: 10px;
 }
 
-.info {
+.info-message {
     color: #333333;
     margin-top: 10px;
 }
@@ -87,30 +81,18 @@ h2 {
 .logged-in-message {
     color: #333333;
     font-weight: bold;
-    text-align: right;
-    margin-top: 10px;
-}
-
-.logout-button {
-    width: 100%;
-    padding: 10px;
-    margin-top: 10px;
-    background-color: #FF6347;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 12px;
-}
-
-.logout-button:hover {
-    background-color: #a4b0d3;
+    position: absolute;
+    top: 10px;
+    right: 10px;
 }
 </style>
 """
 
 # Apply the CSS styling
-st.markdown(page_css, unsafe_allow_html=True)
+st.markdown(login_page_css, unsafe_allow_html=True)
+
+# Top-right logged-in message
+
 
 col1, col2 = st.columns([3, 1])
 
@@ -123,6 +105,7 @@ if st.session_state.get('username'):
             st.session_state['view'] = "login"
             st.success("You have been logged out.")
             st.experimental_rerun()
+
 
 # Function to fetch userdata from the database
 def fetch_userdata(start_date, end_date):
@@ -141,55 +124,20 @@ def fetch_userdata(start_date, end_date):
 def get_connection():
     return pyodbc.connect('DRIVER={ODBC Driver 17 for SQL Server};SERVER=DESKTOP-KCKGKPJ\\MSSQLSERVER01;DATABASE=UserAuth;Trusted_Connection=yes')
 
-def main():# Displaying image
+def main():
+    # Displaying image
     st.image("images/home_img.jpg")
-
-    st.subheader("Food Nutrition Detection Sytem Using Artificial Intelligence")
+    st.title('Food Detection Prediction System')
 
     st.write("Our Food Detection Prediction System offers users valuable insights into their dietary habits over time. By plotting the trend of calorie consumption over a specified period, users can visually track changes in their calorie intake, allowing for a deeper understanding of their eating patterns. This feature empowers users to make informed decisions about their diet and lifestyle by providing a clear visualization of their calorie consumption trends. Whether it's monitoring daily, weekly, or monthly calorie intake, Trend Analysis enables users to identify patterns, set goals, and make adjustments to achieve a healthier and more balanced diet. With this tool, users can take proactive steps towards achieving their health and wellness goals, making it an essential component of our Food Detection Prediction System")
 
     # Date selection widgets
     start_date = st.date_input('Start Date', datetime(2024, 5, 1))
-    #end_date = st.date_input('End Date', datetime(2024, 5, 31))
-    end_date_radio = st.radio("Select End Date Range:", ["Select End Date", "Last 30 Days", "Last 90 Days", "Last 180 Days"])
-    
-    if end_date_radio == "Select End Date":
-        end_date = st.date_input('End Date', datetime(2024, 5, 31))
-    elif end_date_radio == "Last 30 Days":
-        end_date = datetime.today()
-        start_date = end_date - timedelta(days=30)
-    elif end_date_radio == "Last 90 Days":
-        end_date = datetime.today()
-        start_date = end_date - timedelta(days=90)
-    elif end_date_radio == "Last 180 Days":
-        end_date = datetime.today()
-        start_date = end_date - timedelta(days=180)
+    end_date = st.date_input('End Date', datetime(2024, 5, 31))
 
-
-    if st.session_state.get('username'):
-        with st.form("calorie_input_form"):
-            st.write("## Calorie Input")
-            calorie_date = st.date_input('Date', datetime.today())
-            calorie_amount = st.number_input('Calories', value=0)
-
-            submit_button = st.form_submit_button("Submit")
-
-            if submit_button:
-                username = st.session_state['username']
-                with get_connection() as conn:
-                    cursor = conn.cursor()
-                    cursor.execute("INSERT INTO [Userdata] (username, date, calories_added) VALUES (?, ?, ?)", (username, calorie_date, calorie_amount))
-                    conn.commit()
-                    st.success("Calorie data added successfully!")
-    
     # Fetch userdata from the database based on selected date range
     df = fetch_userdata(start_date, end_date)
-  # Display userdata table
-    if not df.empty:
-        st.subheader('User Data')
-        st.write(df)
-    else:
-        st.warning("No data available for the selected date range.")
+
     # Perform trend analysis and display the plot
     if not df.empty:
         st.subheader('Trend Analysis: Calorie Consumption Over Time')

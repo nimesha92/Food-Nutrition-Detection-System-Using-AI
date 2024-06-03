@@ -76,7 +76,7 @@ input[type="text"], input[type="password"] {
 
 button {
     padding: 8px;
-    background-color: #4CAF50;
+    background-color: #5dbea3;
     color: white;
     border: none;
     border-radius: 5px;
@@ -114,6 +114,8 @@ button:hover {
 
 # Apply the CSS styling
 st.markdown(login_page_css, unsafe_allow_html=True)
+
+
 
 # Function to create connection to MSSQL Server
 def get_connection():
@@ -171,6 +173,7 @@ def authenticate_user(conn, username, password):
         return False
 
 # Display login form
+
 with st.container():
     if test_connection():
         with get_connection() as conn:
@@ -186,6 +189,7 @@ with st.container():
             col1, col2 = st.columns([3, 1])
 
             if st.session_state['username']:
+            
                 with col1:
                     st.markdown(f'<p class="logged-in-message">Logged in as {st.session_state["username"]}</p>', unsafe_allow_html=True)
                 with col2:
@@ -195,17 +199,19 @@ with st.container():
                         st.success("You have been logged out.")
                         st.experimental_rerun()  # Rerun the app to reflect changes
             else:
+                # Displaying image
+                st.image("images/home_img.jpg")
                 if st.session_state['view'] == "login":
                     login_username = st.text_input("Username", key="login_username")
                     login_password = st.text_input("Password", type="password", key="login_password")
-                    buttons_html = """
-                    <div class="button-container">
-                        <button onclick="document.getElementById('login_button').click()">Login</button>
-                        <button onclick="document.getElementById('show_register').click()">Register Here</button>
-                    </div>
-                    """
-                    st.markdown(buttons_html, unsafe_allow_html=True)
-                    if st.button("Login", key="login_button", style="display:none"):
+                    # buttons_html = """
+                    # # <div class="button-container">
+                    # #     <button onclick="document.getElementById('login_button').click()">Login</button>
+                    # #     <button onclick="document.getElementById('show_register').click()">Register Here</button>
+                    # # </div>
+                    # # """
+                    #st.markdown(buttons_html, unsafe_allow_html=True)
+                    if st.button("Login", key="login_button"):
                         if authenticate_user(conn, login_username, login_password):
                             st.session_state['username'] = login_username
                             st.session_state['view'] = "content"
@@ -213,7 +219,7 @@ with st.container():
                             st.experimental_rerun()  # Rerun the app to reflect changes
                         else:
                             st.error("Invalid username or password")
-                    if st.button("Register Here", key="show_register", style="display:none"):
+                    if st.button("Register Here", key="show_register"):
                         st.session_state['view'] = "register"
 
                 elif st.session_state['view'] == "register":
@@ -234,9 +240,10 @@ with st.container():
                         st.session_state['view'] = "login"
                         
             # Your content goes here
+
             if st.session_state['username']:
                 def model_prediction(test_image):
-                    model = tf.keras.models.load_model("trained_model.h5")
+                    model = tf.keras.models.load_model("pages/trained_model.h5")
                     image = tf.keras.preprocessing.image.load_img(test_image, target_size=(64, 64))
                     input_arr = tf.keras.preprocessing.image.img_to_array(image)
                     input_arr = np.array([input_arr])  # Convert single image to batch
@@ -245,8 +252,8 @@ with st.container():
 
 
                 if st.session_state["username"]:
-                    image_path = "images/home_img.jpg"
-                    st.image(image_path)
+                # Displaying image
+                    st.image("images/home_img.jpg")
                     st.header("Model Prediction")
                     test_image = st.file_uploader("Choose an Image:")
                     if(st.button("Show Image")):

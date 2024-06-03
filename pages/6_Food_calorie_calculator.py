@@ -44,80 +44,108 @@ def quantity_tab():
     st.write('- Pay attention to serving sizes listed on food packaging.')
 
 def food_calorie_calculator_tab():
-    st.title('Food Calorie Calculator')
+    st.title('Calorie Calculator')
 
-    st.write('Calculate the total calorie count of your meals.')
-    st.write('Use the food calorie calculator to keep track of your calorie intake.')
-    st.write('Enter the food name, quantity, and calories per unit to get started.')
-    
 
-    # Food input form
-    st.subheader('Food Input')
-    food_name = st.text_input('Food Name', '')
-    quantity = st.number_input('Quantity', min_value=0, step=1, value=1)
-    calorie_per_unit = st.number_input('Calories per Unit', min_value=0, step=1, value=0)
 
-    if st.button('Add Food'):
-        # Add the food item to the list
-        add_food_item(food_name, quantity, calorie_per_unit)
 
-    # Display the list of food items and their calorie counts
-    
+    # Predefined calorie values for some common foods (per 100 grams)
+    calorie_data = {
+    "Apple": 52,
+        
+    'Banana': 96,
+    'Orange': 47,
+    'Strawberry':32,
+    'Grapes':69,
+    'Watermelon':30,
+    'Blueberry':57,
+    'Mango':60,
+    'Pineapple':50,
+    'Avocado':160,
+    'Tomato':18,
+    'Carrot':41,
+    'Broccoli':34,
+    'Spinach':23,
+    'Potato':77,
+    'Sweet Potato':86,
+    'Peach':39,
+    'Cherry':50,
+    'Pear':57,
+    'Plum':46,
+    'Apricot':48,
+    'Kiwi':61,
+    'Pomegranate':83,
+    'Papaya': 43,
+    'Guava':68,
+    'Lychee':66,
+    'Blackberry':43,
+    'Raspberry':52,
+    'Cranberry':46,
+    'Fig':74,
+    'Date':282,
+    'Grapefruit':42,
+    'Lemon':29,
+    'Lime':30,
+    'Cucumber':16,
+    'Bell Pepper':31,
+    'Zucchini':17,
+    'Eggplant':25,
+    'Pumpkin':26,
+    'Corn':96,
+    'Peas':81,
+    'Cauliflower': 25,
+    'Celery':16,
+    'Lettuce':15,
+    'Beetroot':43,
+    'Radish':16,
+    'Turnip':28,
+    'Kale':49,
+    'Brussels Sprouts':43
+    }
 
-    # Clear food list button
-    if st.button('Clear Food List'):
-        clear_food_list()
-
-    # Calculate and display the total calorie count
-    total_calories = calculate_total_calories()
-    st.subheader('Total Calories')
-    st.write(total_calories)
-
-    if st.button('Get Result'):
-        if any(item['name'].lower() == 'apple' for item in st.session_state.food_list):
-            if total_calories > 70:
-                st.error(' bad for health!')
-            else:
-                st.success(' good for health!')
-            if any(item['name'].lower() == 'banana' for item in st.session_state.food_list):
-               if total_calories > 50:
-                st.error(' bad for health!')
-               else:
-                st.success(' good for health!')
+    def calculate_calories(food, quantity):
+        if food in calorie_data:
+            return calorie_data[food] * (quantity / 100)
         else:
-            st.success('Selected food is good for health!')
+            return 0
 
-def add_food_item(food_name, quantity, calorie_per_unit):
-    # Add the food item to a data structure (e.g., list, dataframe)
-    # You can choose to store this data in a database if needed
-    if 'food_list' not in st.session_state:
-        st.session_state.food_list = []
-    st.session_state.food_list.append({'name': food_name, 'quantity': quantity, 'calories': calorie_per_unit})
 
-def show_food_list():
-    # Display the list of food items and their calorie counts
-    if 'food_list' in st.session_state and len(st.session_state.food_list) > 0:
-        for item in st.session_state.food_list:
-            st.write(f"{item['name']}: {item['quantity']} units - {item['calories']} calories")
-    else:
-        st.write('No food items added yet.')
+    st.header("Enter the food items and their quantities")
 
-def clear_food_list():
-    # Clear the list of food items
-    st.session_state.food_list = []
+    food_list = []
+    quantity_list = []
 
-def calculate_total_calories():
-    # Calculate the total calorie count based on the food items in the list
+    # Get user input
+    for i in range(1, 6):  # Limiting to 5 items for simplicity
+        food = st.selectbox(f"Select food item {i}", list(calorie_data.keys()), key=f"food_{i}")
+        quantity = st.number_input(f"Enter quantity in grams for {food}", min_value=0, key=f"quantity_{i}")
+        if quantity > 0:
+            food_list.append(food)
+            quantity_list.append(quantity)
+
+    # Calculate total calories
     total_calories = 0
-    if 'food_list' in st.session_state:
-        for item in st.session_state.food_list:
-            total_calories += item['quantity'] * item['calories']
-    return total_calories
+    if st.button("Calculate Total Calories"):
+        for food, quantity in zip(food_list, quantity_list):
+            total_calories += calculate_calories(food, quantity)
+        st.write(f"Total Calories: {total_calories} kcal")
+
+    st.header("Calorie Information")
+    st.table(calorie_data.items())
+
+
+
+def calculate_calories(food, quantity):
+    if food in calorie_data:
+        return calorie_data[food] * (quantity / 100)
+    else:
+        return 0
+
 
 def main():
     # Displaying image
     st.image("images/home_img.jpg")
-    st.title('Food Detection Prediction System')
+    st.title("Food Nutrition Detection Sytem Using Artificial Intelligence")
     
 
     # Add custom CSS for navigation bar
