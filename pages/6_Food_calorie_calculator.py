@@ -145,7 +145,7 @@ def calculate_calories(food, quantity):
 def main():
     # Displaying image
     st.image("images/home_img.jpg")
-    st.title('Food Detection Prediction System')
+    st.title("Food Nutrition Detection Sytem Using Artificial Intelligence")
     
 
     # Add custom CSS for navigation bar

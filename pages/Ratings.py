@@ -44,7 +44,7 @@ def fetch_feedback_data():
 st.image("images/home_img.jpg")
 
 # Page content
-st.title("FRUITS & VEGETABLES RECOGNITION SYSTEM")
+st.title("Food Nutrition Detection Sytem Using Artificial Intelligence")
 
 # Navigation tabs
 tabs = ["Ratings and Reviews"]

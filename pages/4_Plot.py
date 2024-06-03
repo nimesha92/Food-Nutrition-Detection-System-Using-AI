@@ -144,7 +144,7 @@ def get_connection():
 def main():# Displaying image
     st.image("images/home_img.jpg")
 
-    st.title('Food Detection Prediction System')
+    st.subheader("Food Nutrition Detection Sytem Using Artificial Intelligence")
 
     st.write("Our Food Detection Prediction System offers users valuable insights into their dietary habits over time. By plotting the trend of calorie consumption over a specified period, users can visually track changes in their calorie intake, allowing for a deeper understanding of their eating patterns. This feature empowers users to make informed decisions about their diet and lifestyle by providing a clear visualization of their calorie consumption trends. Whether it's monitoring daily, weekly, or monthly calorie intake, Trend Analysis enables users to identify patterns, set goals, and make adjustments to achieve a healthier and more balanced diet. With this tool, users can take proactive steps towards achieving their health and wellness goals, making it an essential component of our Food Detection Prediction System")
 
